@@ -1,2 +1,124 @@
 
 
+
+## import_data ##   
+
+test <- read.table (file = "", header = TRUE)
+head(test)
+str(test)
+
+association_F <- as.factor(habitat_association_analysis_github$association)
+test <- cbind(habitat_association_analysis_github, association_F)
+
+head(habitat_association_analysis_github)
+
+MaxWC <- polr(association_F ~ Max_mm, data = habitat_association_analysis_github, Hess=TRUE)
+summary(Max_mm)
+
+(ctable <- coef(summary(MaxWC)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+MinWC <- polr(association_F ~ Min_WC, data = test, Hess=TRUE)
+summary(MinWC)
+
+(ctable <- coef(summary(MinWC)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+OptWC <- polr(association_F ~ Opt_WC, data = test, Hess=TRUE)
+summary(OptWC)
+
+(ctable <- coef(summary(OptWC)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+cge <- polr(association_F ~ CGE, data = test, Hess=TRUE)
+summary(cge)
+
+(ctable <- coef(summary(cge)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+lcp <- polr(association_F ~ LCP, data = test, Hess=TRUE)
+summary(lcp)
+
+(ctable <- coef(summary(lcp)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+lsp <- polr(association_F ~ LSP, data = test, Hess=TRUE)
+summary(lsp)
+
+(ctable <- coef(summary(lsp)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+dr <- polr(association_F ~ DR, data = test, Hess=TRUE)
+summary(dr)
+
+(ctable <- coef(summary(dr)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+chl <- polr(association_F ~ Chl, data = test, Hess=TRUE)
+summary(chl)
+
+(ctable <- coef(summary(chl)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+maxNP <- polr(association_F ~ NP_Max, data = test, Hess=TRUE)
+summary(maxNP)
+
+(ctable <- coef(summary(maxNP)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+(ctable <- cbind(ctable, "p value" = p))
+
+
+
+attach(test)
+
+cor.test(test$CGE, test$NP_Max, method=c("pearson"))
+cor.test(test$CGE, test$DR, method=c("pearson"))
+cor.test(test$Chl, test$NP_Max, method=c("pearson"))
+
+cor.test(test$Min_WC, test$NP_Max, method=c("pearson"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
