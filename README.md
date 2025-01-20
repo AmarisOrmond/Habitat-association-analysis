@@ -1,1 +1,1 @@
-Data and results of habitat assocaiation analysis (as presented in Table 3)
+Data and results of habitat assocaiation analysis (as described in manuscript)
